@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desconectate</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Desconecta para conectar</h1>
+        <p> La Mejor Guia Para Un Mejor uso a nuestros telefonos</p>
+    </header>
+
+    <div class="container">
+        <div class="card" onclick="openModal('modal1')">
+            <h2>Regla del 20-20-20</h2>
+            <p>Protege tu salud visual del cansancio digital.</p>
+        </div>
+
+        <div class="card" onclick="openModal('modal2')">
+            <h2>Zonas Libres de Pantallas</h2>
+            <p>Mejora tu descanso y tus relaciones personales.</p>
+        </div>
+
+        <div class="card" onclick="openModal('modal3')">
+            <h2>Gestión de Notificaciones</h2>
+            <p>Recupera tu capacidad de concentración.</p>
+        </div>
+
+        <div class="card" onclick="openModal('modal4')">
+            <h2>Modo Escala de Grises</h2>
+            <p>Haz que tu teléfono sea menos adictivo.</p>
+        </div>
+    </div>
+
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal1')">&times;</span>
+            <h2>La Regla 20-20-20</h2>
+           <img src="2020.jpg" width="200x">
+            <p>Para evitar la fatiga ocular, cada 20 minutos debes mirar algo que esté a 20 pies (unos 6 metros) durante al menos 20 segundos.</p>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal2')">&times;</span>
+            <h2>Dormitorio sin Celular</h2>
+           <img src="Relleno.jpg" width="200x">
+            <p>Evita usar el teléfono antes de dormir. La luz azul inhibe la melatonina, la hormona del sueño.</p>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal3')">&times;</span>
+            <h2>Domina tus Alertas</h2>
+           <img src="Noti.jpg" width="200x">
+            <p>Desactiva las alertas de redes sociales y revisa las apps solo cuando tú lo decidas, no cuando ellas quieran.</p>
+        </div>
+    </div>
+
+    <div id="modal4" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal4')">&times;</span>
+            <h2>Escala de Grises</h2>
+           <img src="Escala.jpg" width="200x">
+            <p>Quitarle el color a tu pantalla reduce la gratificación visual instantánea que el cerebro busca.</p>
+        </div>
+    </div>
+<div class="card" 
+            <h2>Postura</h2>
+            <p>Mantén el teléfono a la altura de los ojos para evitar el "cuello de texto" y dolores cervicales.</p>
+  <img src="Postura.jpg" width="200x">
+        </div>
+  <div class="footer2"
+  <p> ¿Quieres Saber mas informacion?</p>
+    <a href="info.html" class="boton-redireccion">Ir a Mas Informacion</a>
+  </div>
+    <script>
+        function openModal(id) {
+            document.getElementById(id).style.display = "block";
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                event.target.style.display = "none";
+            }
+        }
+    </script>
+  <footer>
+        <p>Gabriel Gutierrez, Jose Lozada , Miguel miranda</p>
+    </footer>
+</body>
+</html>

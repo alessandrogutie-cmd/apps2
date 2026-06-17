@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario con CAPTCHA</title>
+    <link rel="stylesheet" href="gabox.css">
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Contacto</h2>
+        <form id="contactForm" onsubmit="return validarFormulario(event)">
+            
+            <div class="input-group">
+                <label for="nombre">Nombre Completo</label>
+                <input type="text" id="nombre" required placeholder="Tu nombre...">
+            </div>
+
+            <div class="input-group">
+                <label for="correo">Correo Electrónico</label>
+                <input type="email" id="correo" required placeholder="tu@correo.com">
+            </div>
+
+            <div class="captcha-area">
+                <label>Verificación de seguridad</label>
+                <div class="captcha-box">
+                    <span id="captcha-code" class="captcha-code"></span>
+                    <button type="button" id="refresh-btn" onclick="generarCaptcha()">🔄</button>
+                </div>
+                <input type="text" id="captcha-input" placeholder="Ingresa el código de arriba" required>
+                
+                <span id="captcha-error" class="error-msg" style="color: #ff4a4a; display: none; font-size: 13px; margin-top: 8px; font-weight: bold;">❌ El código no coincide. Inténtalo de nuevo.</span>
+                <span id="captcha-success" class="success-msg" style="color: #00ffa3; display: none; font-size: 13px; margin-top: 8px; font-weight: bold;">✅ ¡CAPTCHA correcto! Redirigiendo...</span>
+            </div>
+
+            <button type="submit" class="submit-btn">Enviar Mensaje</button>
+        </form>
+    </div>
+
+    <script>
+        // Genera el código aleatorio
+        function generarCaptcha() {
+            const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let captchaText = '';
+            for (let i = 0; i < 6; i++) {
+                captchaText += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+            }
+            document.getElementById('captcha-code').innerText = captchaText;
+            document.getElementById('captcha-input').value = '';
+            document.getElementById('captcha-error').style.display = 'none';
+            document.getElementById('captcha-success').style.display = 'none';
+        }
+
+        // Valida el formulario
+        function validarFormulario(event) {
+            event.preventDefault(); // Detiene el envío automático
+
+            const captchaGenerado = document.getElementById('captcha-code').innerText;
+            const captchaUsuario = document.getElementById('captcha-input').value;
+            const errorMsg = document.getElementById('captcha-error');
+            const successMsg = document.getElementById('captcha-success');
+
+            // CASO 1: El código es INCORRECTO
+            if (captchaUsuario !== captchaGenerado) {
+                successMsg.style.display = 'none'; // Oculta mensaje de éxito si estuviera activo
+                errorMsg.style.display = 'block';  // Muestra el mensaje de error
+                generarCaptcha();                  // Cambia el captcha por seguridad
+                return false;
+            }
+
+            // CASO 2: El código es CORRECTO
+            errorMsg.style.display = 'none';       // Oculta el mensaje de error
+            successMsg.style.display = 'block';    // Muestra el texto de "Redirigiendo..." en pantalla
+
+            // Espera 2 segundos (2000 milisegundos) para que el usuario vea el mensaje y luego cambia de página
+            setTimeout(function() {
+               
+                window.location.href = "menu.html"; 
+            }, 2000);
+
+            return true;
+        }
+
+       
+        window.onload = generarCaptcha;
+    </script>
+
+</body>
+</html>
